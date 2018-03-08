@@ -1,0 +1,10 @@
+<h2 class="act-name">{{activity.name}}</h2>
+<div>{{activity.date | date:'dd-MM-yyyy'}}, om {{activity.date | date:'HH:mm'}}</div>
+<div *ngIf="activity.location">Bij {{activity.owner}}, {{activity.location}}</div>
+<div *ngIf="!activity.location">Nog geen locatie bekend</div>
+<div>{{activity.description}}</div>
+
+<button class="btn btn-dark" (click)="benErbij()" type="button">Bij!</button>
+<button class="btn btn-dark" type="button">Meer info</button>
+
+

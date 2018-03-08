@@ -1,0 +1,5 @@
+<div id="activity-container">
+  <div class="activity-card card" *ngFor="let act of activities | async">
+    <app-activity-card [activity]="act"></app-activity-card>
+  </div>
+</div>

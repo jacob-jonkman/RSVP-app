@@ -1,0 +1,8 @@
+<h2>Inloggen</h2>
+<form ng-submit="login(email,password)">
+  <div class="mb-2">
+    <input type="text" id="email" name="email" [(ngModel)]="email" placeholder="Email">
+    <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="password"> <br>
+  </div>
+  <input type="submit" id="login-button" name="submit" (click)="login(email,password)" value="Login" class="btn btn-primary">
+</form>
