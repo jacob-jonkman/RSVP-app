@@ -1,13 +1,15 @@
-<button *ngIf="!newActivityDialog" class="btn btn-primary" (click)="newActivity()">Nieuwe activiteit</button>
+<button *ngIf="!newActivityDialog" class="btn btn-primary" (click)="toggleActivityDialog(true)">Nieuwe activiteit</button>
 
 <app-new-activity-form
   *ngIf="newActivityDialog"
-  [newActivityDialog]="newActivityDialog">
+  (toggleActDialog)="toggleActivityDialog()">
 </app-new-activity-form>
 
 <div id="activity-container">
   <div class="activity-card card" *ngFor="let act of activities | async">
-    <app-activity-card [activity]="act"></app-activity-card>
+    <app-activity-card
+      [activity]="act">
+    </app-activity-card>
   </div>
 </div>
 

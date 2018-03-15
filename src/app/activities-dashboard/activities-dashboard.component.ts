@@ -40,7 +40,7 @@ export class ActivitiesDashboardComponent implements OnInit {
     return this.activityService.getActivities();
   }
 
-  newActivity() {
-    this.newActivityDialog = true;
+  toggleActivityDialog() {
+    this.newActivityDialog = !this.newActivityDialog;
   }
 }

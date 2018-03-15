@@ -13,5 +13,6 @@
     <label class="newActivityLabel" for="beschrijving">Beschrijving</label>
     <input type="text" id="beschrijving" name="beschrijving" [(ngModel)]="description"><br>
     <input type="submit" class="btn btn-primary" name="submit" (click)="addActivity()">
+    <button class="btn btn-primary" name="cancel" (click)="toggleActDialog.emit()">Cancel</button>
   </ngForm>
 </div>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Time} from '@angular/common';
 import {Activity} from '../activity';
 import {ActivitiesService} from '../activities.service';
@@ -10,7 +10,8 @@ import {LoginService} from '../login.service';
   styleUrls: ['./new-activity-form.component.css']
 })
 export class NewActivityFormComponent implements OnInit {
-  @Input() newActivityDialog: boolean;
+  @Output() toggleActDialog = new EventEmitter();
+
   name: string;
   date: Date;
   time: Time;
@@ -34,8 +35,8 @@ export class NewActivityFormComponent implements OnInit {
       [],
       this.loginService.getUsername()
     );
-    this.activityService.addActivity(newActivity);
-
-    // TODO: Zet newActivityDialog weer op false
+    if (this.activityService.addActivity(newActivity)) {
+      this.toggleActDialog.emit();
+    }
   }
 }
