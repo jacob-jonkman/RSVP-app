@@ -1,5 +1,5 @@
 <h2 class="activity-field act-name">{{activity.name}}</h2>
-<div class="activity-field">{{activity.date | date:'dd/MM/yy'}}, om {{activity.date | date:'H:mm'}}</div>
+<div class="activity-field">{{activity.date | date:'dd/MM/yy'}}, om {{activity.date | date:'HH:mm':'+0000'}}</div>
 <div class="activity-field" *ngIf="activity.owner">Bij {{activity.owner}}, {{activity.location}}</div>
 <div class="activity-field" *ngIf="!activity.owner">Nog geen locatie bekend</div>
 <div class="activity-field activity-description mb-2">{{activity.description}}</div>
