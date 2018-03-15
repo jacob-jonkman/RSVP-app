@@ -8,7 +8,10 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public loginService: LoginService, public router: Router) {}
+  constructor(
+    public loginService: LoginService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
   }

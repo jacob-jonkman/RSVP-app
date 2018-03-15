@@ -7,7 +7,7 @@
       <a class="nav-link" routerLink="activities">Overzicht</a>
     </li>
     <li  class="nav-item" *ngIf="loginService.getUser()">
-      <a class="nav-link" (click)="logout()">Uitloggen</a>
+      <a class="nav-link" id="logout-button" (click)="logout()">Uitloggen</a>
     </li>
   </ul>
 </nav>

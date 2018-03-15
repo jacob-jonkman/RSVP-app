@@ -1,10 +1,8 @@
 .activity-card {
-  display: grid;
+  float: left;
   background-color: #eec;
   padding: 5px;
   margin: 5px;
   width: 32%;
-  float: left;
   height: 250px;
 }
-

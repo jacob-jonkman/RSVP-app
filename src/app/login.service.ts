@@ -9,10 +9,14 @@ export class LoginService {
   constructor(public afAuth: AngularFireAuth) { }
 
   login(email, password): Promise<User | null> {
+    if (this.getUser() != null) {
+      console.log('was al ingelogd?');
+    }
     return auth().signInWithEmailAndPassword(email, password)
       .then(
         () => {
           console.log(auth().currentUser);
+          auth().currentUser.updateProfile({displayName: 'Jacob', photoURL: ''});
           return of(auth().currentUser);
         }
       )
@@ -38,7 +42,22 @@ export class LoginService {
     return of(this.afAuth.auth.currentUser);
   }
 
-  getUser(): User {
-    return this.afAuth.auth.currentUser;
+  getUser(): User| null {
+    return auth().currentUser;
+  }
+
+  getUsername(): string {
+    return auth().currentUser.displayName;
+  }
+
+  userIsBoardMember(username: string): boolean {
+    if (
+      username === 'Jeffrey' ||
+      username === 'Maaike' ||
+      username === 'David' ||
+      username === 'Jeanette'
+    ) {
+      return true;
+    }
   }
 }

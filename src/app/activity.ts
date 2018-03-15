@@ -1,8 +1,13 @@
 export class Activity {
-  id: number;
-  name: string;
-  date: Date;
-  location: string;
-  owner: string;
-  description: string;
+    constructor(
+      public name: string,
+      public date: Date,
+      // public time: Time,
+      public location: string,
+      public owner: string,
+      public description: string,
+      public attendees: string[],
+      public creator: string,
+      public id?: string,
+    ) {}
 }

@@ -1,0 +1,23 @@
+<div *ngIf="(activity$ | async) as activity; else loadingActivity">
+  <h2>Activiteit aanpassen</h2>
+  <ngForm>
+    <label class="editActivityLabel" for="naam">Naam</label>
+    <input type="text" id="naam" required name="naam" [(ngModel)]="activity.name"><br>
+    <label class="editActivityLabel" for="adres">Adres</label>
+    <input type="text" id="adres" name="adres" [(ngModel)]="activity.location"><br>
+    <label class="editActivityLabel" for="huisvan">In het huis van</label>
+    <input type="text" id="huisvan" name="huis-van" [(ngModel)]="activity.owner"><br>
+    <label class="editActivityLabel" for="datum">Datum</label>
+    <input type="date" id="datum" required name="datum" [(ngModel)]="activity.date"><br>
+    <label class="editActivityLabel" for="begintijd">Begintijd</label>
+    <input type="time" id="begintijd" required name="begintijd" [(ngModel)]="activity.time"><br>
+    <label class="editActivityLabel" for="beschrijving">Beschrijving</label>
+    <input type="text" id="beschrijving" name="beschrijving" [(ngModel)]="activity.description"><br>
+    <input type="submit" class="btn btn-primary" name="submit" (click)="updateActivity(activity)">
+    <input type="submit" class="btn btn-primary" name="verwijder" value="Verwijder"(click)="deleteActivity(activity)">
+  </ngForm>
+</div>
+
+<ng-template #loadingActivity>
+  Loading...
+</ng-template>

@@ -9,6 +9,32 @@ describe('Login test', function() {
     cy.get('#login-button')
       .click();
     cy.url().should('include', 'activities');
+  });
+
+  it('Tests if users remain on the same page when reloading', function() {
+    cy.visit('http://localhost:4200');
+    cy.get('#email')
+      .type('usertest@test.com')
+      .should('have.value', 'usertest@test.com');
+    cy.get('#password')
+      .type('passwordtest');
+    cy.get('#login-button')
+      .click();
+    cy.url().should('include', 'activities');
+    cy.visit('http://localhost:4200/activities');
+    cy.url().should('contain', 'activities');
+  });
+
+  it('Tests if logging out works correctly', function() {
+    cy.visit('http://localhost:4200');
+    cy.get('#email')
+      .type('usertest@test.com')
+      .should('have.value', 'usertest@test.com');
+    cy.get('#password')
+      .type('passwordtest');
+    cy.get('#login-button')
+      .click();
+    cy.url().should('include', 'activities');
     cy.get('#logout-button')
       .click();
     cy.url().should('not.contain', 'activities');

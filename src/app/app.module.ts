@@ -7,16 +7,24 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { OverlayModule } from '@angular/cdk/overlay';
+import { LoginService } from './login.service';
+import { ActivitiesService } from './activities.service';
+
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
-import { LoginService } from './login.service';
 import { ActivitiesDashboardComponent } from './activities-dashboard/activities-dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ActivityCardComponent } from './activity-card/activity-card.component';
+import { NewActivityFormComponent } from './new-activity-form/new-activity-form.component';
+import { ActivityInfoComponent } from './activity-info/activity-info.component';
+import { ActivityEditComponent } from './activity-edit/activity-edit.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'activities', component: ActivitiesDashboardComponent }
+  { path: 'activities', component: ActivitiesDashboardComponent },
+  { path: 'info/:id', component: ActivityInfoComponent },
+  { path: 'edit/:id', component: ActivityEditComponent },
+  { path: '', pathMatch: 'full', component: LoginComponent }
 ];
 
 @NgModule({
@@ -29,16 +37,27 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    OverlayModule
   ],
   providers: [
     LoginService,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ActivitiesService
   ],
   exports: [
     RouterModule,
   ],
-  declarations: [ AppComponent, LoginComponent, ActivitiesDashboardComponent, NavbarComponent, ActivityCardComponent ],
-  bootstrap: [ AppComponent ]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ActivitiesDashboardComponent,
+    NavbarComponent,
+    ActivityCardComponent,
+    NewActivityFormComponent,
+    ActivityInfoComponent,
+    ActivityEditComponent,
+  ],
+  bootstrap: [ AppComponent ],
 })
 
 export class AppModule {}

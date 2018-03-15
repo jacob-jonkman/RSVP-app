@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {Router} from '@angular/router';
 import {LoginService} from '../login.service';
+import {ActivitiesService} from '../activities.service';
+import {Activity} from '../activity';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-activities-dashboard',
@@ -11,26 +13,34 @@ import {LoginService} from '../login.service';
 })
 
 export class ActivitiesDashboardComponent implements OnInit {
-  activities: Observable<any[]>;
+  activities: Observable<Activity[]>;
   db: AngularFirestore;
+  newActivityDialog: boolean;
 
-  constructor(db: AngularFirestore, public router: Router, public loginService: LoginService) {
-    this.db = db;
+  constructor(
+    public router: Router,
+    public loginService: LoginService,
+    public activityService: ActivitiesService
+  ) {
+    this.newActivityDialog = false;
   }
   ngOnInit() {
-    if (this.loginService.getUserObservable() == null) {
-      this.router.navigate([''])
-        .then(() => console.log('Not logged in, returning to homepage'))
-        .catch(function(error) {
-          console.log('ERROR! ' + error.code + ':' + error.message);
-          return null;
-        });
+    if (this.loginService.getUser() == null) {
+        this.router.navigate([''])
+          .then(() => console.log('Not logged in, returning to homepage. observable'))
+          .catch(function(error) {
+            console.log('ERROR! ' + error.code + ':' + error.message);
+            return null;
+          });
     }
     this.activities = this.getActivities();
   }
 
-  getActivities() {
-    return this.db.collection('Activities').valueChanges(); // TODO: use snapshotChanges when need arises
+  getActivities(): Observable<Activity[]> {
+    return this.activityService.getActivities();
   }
 
+  newActivity() {
+    this.newActivityDialog = true;
+  }
 }

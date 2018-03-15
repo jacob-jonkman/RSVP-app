@@ -1,0 +1,17 @@
+<div>
+  <ngForm>
+    <label class="newActivityLabel" for="naam">Naam</label>
+    <input type="text" id="naam" required  name="naam" [(ngModel)]="name"><br>
+    <label class="newActivityLabel" for="adres">Adres</label>
+    <input type="text" id="adres" name="adres" [(ngModel)]="address"><br>
+    <label class="newActivityLabel" for="huisvan">In het huis van</label>
+    <input type="text" id="huisvan" name="huis-van" [(ngModel)]="homeOf"><br>
+    <label class="newActivityLabel" for="datum">Datum</label>
+    <input type="date" id="datum" required name="datum" [(ngModel)]="date"><br>
+    <label class="newActivityLabel" for="begintijd">Begintijd</label>
+    <input type="time" id="begintijd" required name="begintijd" [(ngModel)]="time"><br>
+    <label class="newActivityLabel" for="beschrijving">Beschrijving</label>
+    <input type="text" id="beschrijving" name="beschrijving" [(ngModel)]="description"><br>
+    <input type="submit" class="btn btn-primary" name="submit" (click)="addActivity()">
+  </ngForm>
+</div>
