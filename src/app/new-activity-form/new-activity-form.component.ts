@@ -25,7 +25,33 @@ export class NewActivityFormComponent implements OnInit {
   }
 
   addActivity() {
-    const activityDate = new Date(this.date + 'T' + this.time);
+    const date: Date = new Date(this.date);
+    date.setHours(parseInt(this.time.toString().substr(0, 2), 10));
+    date.setMinutes(parseInt(this.time.toString().substr(3, 2), 10));
+
+    console.log('hours: ' + parseInt(this.time.toString().substr(0, 2), 10));
+    console.log('minutes: ' + parseInt(this.time.toString().substr(3, 2), 10));
+
+    console.log(
+      date.getFullYear()
+      + '-' + (date.getMonth() + 1)
+      + '-' + date.getDate()
+      + ' ' + date.getHours()
+      + ':' + date.getMinutes()
+    );
+    const activityDate = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      date.getHours(),
+      date.getMinutes(),
+      0,
+      0,
+    );
+    console.log('activityDate:' + activityDate, ' with type: ' + typeof(activityDate));
+    if (isNaN(activityDate.getTime())) {
+      return;
+    }
     const newActivity = new Activity(
       this.name,
       activityDate,
@@ -35,8 +61,6 @@ export class NewActivityFormComponent implements OnInit {
       [],
       this.loginService.getUsername()
     );
-    if (this.activityService.addActivity(newActivity)) {
-      this.toggleActDialog.emit();
-    }
+    this.activityService.addActivity(newActivity);
   }
 }
